@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import Link from "next/link";
 
 interface User {
   username: string;
@@ -28,20 +29,26 @@ function Chat({ user }: { user: User }) {
         room: "a",
       };
       ref.current.value = "";
-      const _resp = await fetch("http://127.0.0.1:8080/message", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const _resp = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/message`,
+        {
+          method: "POST",
+          mode: "cors",
+          cache: "no-cache",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
     }
   };
 
   useEffect(() => {
-    const evs = new EventSource("http://127.0.0.1:8080/events");
+    const evs = new EventSource(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/events`,
+      { withCredentials: true }
+    );
     console.log("Initializing", evs);
 
     evs.onopen = (ev) => {
@@ -89,13 +96,26 @@ export default function Home() {
   });
 
   const ref = useRef<HTMLInputElement>(null);
-  const login = () => {
+  const login = async () => {
     if (ref && ref.current) {
       const username = ref.current.value.trim();
       if (username) {
-        const new_user = { ...user };
-        new_user.username = username;
-        setUser(new_user);
+        const credential = { ...user };
+        credential.username = username;
+        const _resp = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,
+          {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(credential),
+          }
+        );
+        setUser(credential);
       }
     }
   };
@@ -113,6 +133,7 @@ export default function Home() {
 
   return (
     <main>
+      <Link href="/login">Login</Link>
       <div>{count}</div>
       <button onClick={() => setCount((cur) => cur + 1)}>Increase</button>
       <button onClick={trigger}>Trigger</button>
