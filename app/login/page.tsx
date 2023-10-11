@@ -1,21 +1,19 @@
-"use client";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { cookies } from "next/headers";
 
-export default function Page() {
-  const { data: session } = useSession();
-
-  if (session) {
-    return (
-      <>
-        Signed in as {session.user?.name} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
-  }
+export default function LoginForm() {
+  const csrf = cookies().get("next-auth.csrf-token")?.value.split("|")[0];
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <form method="post" action="/api/auth/callback/credentials">
+      <input name="csrfToken" type="hidden" defaultValue={csrf} />
+      <label>
+        Username
+        <input name="username" type="text" />
+      </label>
+      <label>
+        Password
+        <input name="password" type="password" />
+      </label>
+      <button type="submit">Sign in</button>
+    </form>
   );
 }

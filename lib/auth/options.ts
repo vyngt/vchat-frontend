@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "VChat",
       credentials: {
-        email: {
+        username: {
           label: "Username",
           type: "text",
           placeholder: "username",
@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const body = {
-          username: credentials?.email as string,
+          username: credentials?.username as string,
           password: credentials?.password as string,
         };
 
@@ -127,5 +127,8 @@ export const authOptions: NextAuthOptions = {
       session.user = token.user;
       return session;
     },
+  },
+  pages: {
+    signIn: "/login",
   },
 };
