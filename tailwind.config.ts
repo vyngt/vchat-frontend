@@ -12,6 +12,7 @@ const config: Config = {
       primary: "rgb(var(--color-primary) / <alpha-value>)",
       secondary: "rgb(var(--color-secondary) / <alpha-value>)",
       background: "rgb(var(--color-background) / <alpha-value>)",
+      "sidebar-selected": "rgb(var(--color-sidebar-selected) / <alpha-value>)",
     },
     extend: {},
   },

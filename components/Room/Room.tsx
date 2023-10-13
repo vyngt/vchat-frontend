@@ -1,13 +1,5 @@
-import Link from "next/link";
 import { Room } from "./types";
-
-export function RoomComponent({ room }: { room: Room }) {
-  return (
-    <Link className="h-10 leading-[40px]" href={`/chat/channel/${room.id}/`}>
-      {room.name}
-    </Link>
-  );
-}
+import { RoomItem } from "./RoomItem";
 
 export function ListRoomComponent({
   rooms,
@@ -16,7 +8,7 @@ export function ListRoomComponent({
   return (
     <div {...rest} className={`${rest.className} flex flex-col`}>
       {rooms.map((room) => (
-        <RoomComponent key={room.id} room={room} />
+        <RoomItem key={room.id} room={room} />
       ))}
     </div>
   );
