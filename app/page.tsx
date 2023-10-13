@@ -92,24 +92,9 @@ function Chat({ user }: { user: User }) {
 }
 
 export default function Home() {
-  const ref = useRef<HTMLInputElement>(null);
-
-  const [count, setCount] = useState(0);
-
-  const trigger = useCallback(() => {
-    console.log("Triggered");
-  }, []);
-
-  useEffect(() => {
-    trigger();
-    console.log("Inside useEffect");
-  }, [trigger]);
-
   return (
     <div>
-      <div>{count}</div>
-      <button onClick={() => setCount((cur) => cur + 1)}>Increase</button>
-      <button onClick={trigger}>Trigger</button>
+      <Link href="/chat">Let chatting</Link>
     </div>
   );
 }

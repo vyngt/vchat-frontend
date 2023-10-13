@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar-room {
+  height: calc(100% - 56px);
+  @apply border-r border-secondary fixed overflow-y-scroll;
+}
+
+.sidebar-room::-webkit-scrollbar {
+  width: 0px;
+}
