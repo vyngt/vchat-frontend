@@ -1,7 +1,7 @@
 import { Room } from "./types";
 import { RoomItem } from "./RoomItem";
 
-export function ListRoomComponent({
+export function RoomNav({
   rooms,
   ...rest
 }: React.HTMLAttributes<HTMLDivElement> & { rooms: Array<Room> }) {

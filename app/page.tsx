@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
 
 interface User {
   username: string;

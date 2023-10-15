@@ -1,5 +1,3 @@
-import { ListRoomComponent } from "./Room";
-import { Room } from "./types";
-
-export { ListRoomComponent };
-export type { Room };
+export { RoomNav } from "./Room";
+export { RoomBody } from "./RoomBody";
+export type { Room } from "./types";

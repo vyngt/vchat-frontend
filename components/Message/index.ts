@@ -1,4 +1,4 @@
-import { MessageComponent, MessageRoomComponent } from "./Message";
-import { MessageInput } from "./MessageInput";
-
-export { MessageComponent, MessageRoomComponent, MessageInput };
+export { MessageInput } from "./MessageInput";
+export { MessageBody } from "./MessageBody";
+export { MessageItem } from "./MessageItem";
+export type { Message } from "./types";
