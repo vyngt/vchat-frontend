@@ -12,5 +12,9 @@
 }
 
 body {
-  @apply bg-background text-primary h-[100vh];
+  @apply h-[100vh] bg-background text-primary;
+}
+
+.v-input {
+  @apply rounded-lg border-2 border-primary/80 bg-transparent px-2 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/60;
 }

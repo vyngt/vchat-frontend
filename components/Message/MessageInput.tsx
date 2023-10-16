@@ -40,9 +40,9 @@ export const MessageInput = memo(function MessageInput({
   };
 
   return (
-    <form className="border-primary bg-primary/20 rounded-md h-14">
+    <form className="h-12 rounded-md border-primary bg-primary/20">
       <input
-        className="bg-transparent h-full w-full px-2"
+        className="v-input h-full w-full"
         id="msg-input"
         ref={inputRef}
         placeholder="Text"

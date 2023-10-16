@@ -83,7 +83,7 @@ export default function Page() {
   const [state, dispatch] = useReducer(SignUpReducer, initialForm);
   const [errState, dispatchErrState] = useReducer(
     ErrorFormReducer,
-    initialErrorForm
+    initialErrorForm,
   );
   const router = useRouter();
 
@@ -120,19 +120,19 @@ export default function Page() {
   }, [errState.show]);
 
   return (
-    <div className="flex flex-col justify-center h-full">
-      <div className="text-center text-4xl mb-3">
+    <div className="flex h-full flex-col justify-center">
+      <div className="mb-3 text-center text-4xl">
         <strong>Sign Up</strong>
       </div>
       <div className="flex justify-center">
-        <form method="post" className="w-[600px] flex flex-col gap-6">
+        <form method="post" className="flex w-[600px] flex-col gap-6">
           <label>
             <strong>Username</strong>
-            <div className="border-primary bg-primary/20 rounded-md h-10">
+            <div className="h-10 rounded-md border-primary bg-primary/20">
               <input
                 name="username"
                 type="text"
-                className="bg-transparent h-full px-2 w-full"
+                className="v-input h-full w-full"
                 onChange={(ev) => {
                   dispatch({ type: "change_username", value: ev.target.value });
                 }}
@@ -142,11 +142,11 @@ export default function Page() {
           </label>
           <label>
             <strong>Password</strong>
-            <div className="border-primary bg-primary/20 rounded-md h-10">
+            <div className="h-10 rounded-md border-primary bg-primary/20">
               <input
                 name="password"
                 type="password"
-                className="bg-transparent h-full px-2 w-full"
+                className="v-input h-full w-full"
                 onChange={(ev) => {
                   dispatch({ type: "change_password", value: ev.target.value });
                 }}
@@ -156,11 +156,11 @@ export default function Page() {
           </label>
           <label>
             <strong>Confirm Password</strong>
-            <div className="border-primary bg-primary/20 rounded-md h-10">
+            <div className="h-10 rounded-md border-primary bg-primary/20">
               <input
                 name="password2"
                 type="password"
-                className="bg-transparent h-full px-2 w-full"
+                className="v-input h-full w-full"
                 onChange={(ev) => {
                   dispatch({
                     type: "change_password_2",
@@ -173,14 +173,14 @@ export default function Page() {
           </label>
           <div className="flex justify-center">
             <button
-              className="border-2 border-primary rounded-md p-2 hover:text-background hover:bg-primary transition-colors"
+              className="rounded-md border-2 border-primary p-2 transition-colors hover:bg-primary hover:text-background"
               type="button"
               onClick={makeSignUp}
             >
               Sign Up
             </button>
           </div>
-          <div className="text-secondary text-center">{errState.message}</div>
+          <div className="text-center text-secondary">{errState.message}</div>
         </form>
       </div>
     </div>
