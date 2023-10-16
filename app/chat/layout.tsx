@@ -24,7 +24,7 @@ export default async function ChatLayout({
     return (
       <div className="h-full w-full">
         <RoomNav className="sidebar-room gap-2 w-60 p-2" rooms={rooms} />
-        <RoomBody className="pl-64 p-2">{children}</RoomBody>
+        <RoomBody className="pl-64 p-2 h-full">{children}</RoomBody>
       </div>
     );
   } catch {

@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chat-container {
+  @apply flex flex-col gap-1 p-2 overflow-y-scroll flex-grow;
+}
+
+.chat-container::-webkit-scrollbar {
+  @apply h-3 w-3 bg-secondary/40 rounded-md;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-md;
+}

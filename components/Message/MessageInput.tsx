@@ -29,8 +29,16 @@ export const MessageInput = memo(function MessageInput({
   };
 
   return (
-    <label>
-      <input ref={inputRef} type="text" onKeyDownCapture={handlerEnter} />
-    </label>
+    <form className="border-primary bg-primary/20 rounded-md h-10">
+      {/* <label htmlFor="msg-input"></label> */}
+      <input
+        className="bg-transparent h-full w-full px-2"
+        id="msg-input"
+        ref={inputRef}
+        placeholder="Text"
+        type="text"
+        onKeyDownCapture={handlerEnter}
+      />
+    </form>
   );
 });

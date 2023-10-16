@@ -1,13 +1,21 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import type { Message } from "@/components/Message";
 import { MessageItem, MessageInput } from "@/components/Message";
 
 import { clientAuthFetch } from "@/lib/auth";
+import "./styles.css";
 
 export default function Page({ params }: { params: { id: number } }) {
   const [messages, setMessages] = useState<Array<Message>>([]);
+  const chatContainer = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = useCallback(() => {
+    if (chatContainer && chatContainer.current) {
+      chatContainer.current.scrollTo(0, chatContainer.current.scrollHeight);
+    }
+  }, []);
 
   const addMessage = useCallback((msg: Message) => {
     setMessages((cur) => [...cur, msg]);
@@ -35,6 +43,10 @@ export default function Page({ params }: { params: { id: number } }) {
   }, []);
 
   useEffect(() => {
+    scrollToBottom();
+  }, [messages, scrollToBottom]);
+
+  useEffect(() => {
     fetchMessages();
   }, [fetchMessages]);
 
@@ -60,9 +72,9 @@ export default function Page({ params }: { params: { id: number } }) {
 
   return (
     <>
-      <div>
+      <div className="chat-container" ref={chatContainer}>
         {messages.map((m) => (
-          <MessageItem message={m} />
+          <MessageItem key={m.id} message={m} />
         ))}
       </div>
       <MessageInput sendMessage={sendMessage} />

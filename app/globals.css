@@ -5,12 +5,12 @@
 @layer base {
   :root {
     --color-primary: 255 115 179;
-    --color-secondary: 111 185 122;
-    --color-background: 0 0 0;
+    --color-secondary: 135 135 187;
+    --color-background: 66 6 45;
     --color-sidebar-selected: 66 66 99;
   }
 }
 
 body {
-  @apply bg-background text-primary;
+  @apply bg-background text-primary h-[100vh];
 }

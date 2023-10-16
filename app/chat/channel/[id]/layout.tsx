@@ -15,5 +15,9 @@ export default function RoomInstanceLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <MessageBody>{children}</MessageBody>;
+  return (
+    <MessageBody className="flex flex-col justify-between h-full gap-3">
+      {children}
+    </MessageBody>
+  );
 }

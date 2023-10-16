@@ -10,7 +10,7 @@ const Navbar: React.FunctionComponent<React.HTMLAttributes<HTMLElement>> = ({
   return (
     <nav
       {...rest}
-      className={`flex px-4 py-2 border-b-2 border-b-secondary justify-between ${cn}`}
+      className={`flex px-10 py-2 border-b-2 border-b-secondary justify-between ${cn}`}
     >
       <Link href="/">
         <h3 className="block font-sans text-3xl font-semibold leading-snug tracking-normal text-inherit antialiased">
