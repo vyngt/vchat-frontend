@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 .chat-container {
-  @apply flex flex-col gap-1 p-2 overflow-y-scroll flex-grow;
+  max-height: calc(100% - 48px);
+  @apply flex flex-grow flex-col gap-1 overflow-y-scroll p-2;
 }
 
 .chat-container::-webkit-scrollbar {
-  @apply h-3 w-3 bg-secondary/40 rounded-md;
+  @apply h-3 w-3 rounded-md bg-secondary/40;
 }
 
 .chat-container::-webkit-scrollbar-thumb {
-  @apply bg-primary/50 rounded-md;
+  @apply rounded-md bg-primary/50;
 }
