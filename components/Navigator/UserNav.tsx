@@ -4,19 +4,34 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
-  Button,
   Spinner,
 } from "@material-tailwind/react";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { useSession } from "next-auth/react";
-
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 export function LoginButton() {
-  return <Button onClick={() => signIn()}>Login</Button>;
+  return (
+    <button
+      className="border-2 border-primary rounded-md p-2 hover:text-background hover:bg-primary transition-colors"
+      onClick={() => signIn()}
+    >
+      Login
+    </button>
+  );
+}
+
+export function SignUpButton() {
+  return (
+    <Link
+      href="/register"
+      className="border-2 border-secondary rounded-md p-2 text-background bg-secondary transition-colors"
+    >
+      Sign Up
+    </Link>
+  );
 }
 
 export function UserMenu({ user }: { user: string }) {
@@ -47,7 +62,12 @@ export function UserNav() {
     } else if (status === "authenticated") {
       return <UserMenu user={session.user?.name as string} />;
     } else {
-      return <LoginButton />;
+      return (
+        <div className="flex justify-center gap-2">
+          <LoginButton />
+          <SignUpButton />
+        </div>
+      );
     }
   }
 

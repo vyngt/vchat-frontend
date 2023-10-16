@@ -6,3 +6,7 @@ export interface BackendRequest {
    */
   body?: string;
 }
+
+export interface BackendErrorResponse {
+  message: string;
+}

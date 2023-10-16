@@ -1,14 +1,25 @@
 "use client";
-
-import { KeyboardEvent, useRef } from "react";
-import { memo } from "react";
+import { clientAuthFetch } from "@/lib/auth";
+import { KeyboardEvent, useRef, useCallback, memo } from "react";
 
 export const MessageInput = memo(function MessageInput({
-  sendMessage,
+  params,
 }: {
-  sendMessage: (value: string) => void;
+  params: { id: number };
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const sendMessage = useCallback(async (value: string) => {
+    try {
+      const _resp = await clientAuthFetch({
+        endpoint: "chat/message",
+        method: "POST",
+        body: JSON.stringify({ room_id: Number(params.id), content: value }),
+      });
+    } catch (err) {
+      console.log("Error SendMSG", err);
+    }
+  }, []);
 
   const performSend = () => {
     if (inputRef && inputRef.current) {
@@ -29,8 +40,7 @@ export const MessageInput = memo(function MessageInput({
   };
 
   return (
-    <form className="border-primary bg-primary/20 rounded-md h-10">
-      {/* <label htmlFor="msg-input"></label> */}
+    <form className="border-primary bg-primary/20 rounded-md h-14">
       <input
         className="bg-transparent h-full w-full px-2"
         id="msg-input"

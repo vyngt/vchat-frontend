@@ -1,3 +1,7 @@
 export default function Page() {
-  return <div>Select channel...</div>;
+  return (
+    <div className="flex flex-col justify-center h-full">
+      <div className="text-center">Please select your channel...</div>
+    </div>
+  );
 }

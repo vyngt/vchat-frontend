@@ -1,4 +1,4 @@
-import { MessageBody } from "@/components/Message";
+import { MessageBody, MessageInput } from "@/components/Message";
 import type { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata(
@@ -12,12 +12,15 @@ export async function generateMetadata(
 
 export default function RoomInstanceLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { id: number };
 }) {
   return (
     <MessageBody className="flex flex-col justify-between h-full gap-3">
       {children}
+      <MessageInput params={params} />
     </MessageBody>
   );
 }

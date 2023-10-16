@@ -2,8 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import type { Message } from "@/components/Message";
-import { MessageItem, MessageInput } from "@/components/Message";
-
+import { MessageItem } from "@/components/Message";
 import { clientAuthFetch } from "@/lib/auth";
 import "./styles.css";
 
@@ -27,19 +26,8 @@ export default function Page({ params }: { params: { id: number } }) {
       method: "GET",
     });
     const data: Array<Message> = await resp.json();
-    setMessages(data);
-  }, []);
 
-  const sendMessage = useCallback(async (value: string) => {
-    try {
-      const resp = await clientAuthFetch({
-        endpoint: "chat/message",
-        method: "POST",
-        body: JSON.stringify({ room_id: Number(params.id), content: value }),
-      });
-    } catch (err) {
-      console.log("Error SendMSG", err);
-    }
+    setMessages(data);
   }, []);
 
   useEffect(() => {
@@ -71,13 +59,10 @@ export default function Page({ params }: { params: { id: number } }) {
   }, [addMessage]);
 
   return (
-    <>
-      <div className="chat-container" ref={chatContainer}>
-        {messages.map((m) => (
-          <MessageItem key={m.id} message={m} />
-        ))}
-      </div>
-      <MessageInput sendMessage={sendMessage} />
-    </>
+    <div className="chat-container" ref={chatContainer}>
+      {messages.map((m) => (
+        <MessageItem key={m.id} message={m} />
+      ))}
+    </div>
   );
 }
